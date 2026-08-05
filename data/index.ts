@@ -140,7 +140,7 @@ export const leadership = [
     role: "Infrastructure and Security Track Lead",
     organization: "Google Developer Group – Babcock University",
     period: "September 2025 – Present",
-    location: "Ogun State, Nigeria",
+    location: "Nigeria",
     bullets: [
       "Lead teams in Blockchain, Web3, and Networking.",
       "Organize workshops and security-focused learning programs.",
