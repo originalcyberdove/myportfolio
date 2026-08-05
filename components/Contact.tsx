@@ -21,7 +21,7 @@ const Contact = () => {
           Based in Ibadan, Oyo State, Nigeria. Open for cybersecurity roles, SOC monitoring, penetration testing, and security consulting worldwide.
         </p>
 
-        <a className="mt-8" href="mailto:arogundadeoluwatomilola@gmail.com">
+        <a className="mt-8" href="mailto:oluwatomilolaarogundade@gmail.com">
           <Button
             title="Let's connect"
             icon={<img src="assets/send.svg" />}

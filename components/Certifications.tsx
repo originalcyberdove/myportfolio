@@ -87,15 +87,27 @@ const Certifications = (): JSX.Element => (
 
       {publications.map((pub, idx) => (
         <Sparkle key={`pub-${idx}`} duration={18000}>
-          <div className="p-6 md:p-8 text-start space-y-4 border border-purple/20 rounded-3xl">
-            <span className="text-xs bg-red-700/30 text-red-300 border border-red-500/30 px-3 py-1 rounded-full font-mono inline-block">
-              {pub.role}
-            </span>
-            <h4 className="text-xl md:text-2xl font-bold leading-snug">{pub.title}</h4>
+          <a
+            href={(pub as any).link || (pub.doi ? `https://doi.org/${pub.doi}` : "#")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block p-6 md:p-8 text-start space-y-4 border border-purple/20 rounded-3xl hover:border-purple/50 transition-colors group cursor-pointer"
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-xs bg-red-700/30 text-red-300 border border-red-500/30 px-3 py-1 rounded-full font-mono inline-block">
+                {pub.role}
+              </span>
+              <span className="text-xs text-purple-300 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                View Publication &rarr;
+              </span>
+            </div>
+            <h4 className="text-xl md:text-2xl font-bold leading-snug group-hover:text-purple transition-colors">
+              {pub.title}
+            </h4>
             <p className="text-sm opacity-80 font-medium">{pub.authors}</p>
             <p className="text-sm text-purple-300 italic">{pub.journal}</p>
             <p className="text-xs opacity-60 font-mono">DOI: {pub.doi}</p>
-          </div>
+          </a>
         </Sparkle>
       ))}
     </div>

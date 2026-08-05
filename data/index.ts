@@ -195,6 +195,7 @@ export const publications = [
     role: "Lead Author",
     doi: "10.26483/ijarcs.v17i3.7439",
     authors: "Arogundade, O. et al.",
+    link: "https://doi.org/10.26483/ijarcs.v17i3.7439",
   },
 ];
 
@@ -212,7 +213,7 @@ export const socialMedia = [
   {
     id: 3,
     img: "assets/web.svg",
-    link: "mailto:arogundadeoluwatomilola@gmail.com",
+    link: "mailto:oluwatomilolaarogundade@gmail.com",
   },
 ];
 
