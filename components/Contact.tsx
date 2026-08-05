@@ -23,7 +23,7 @@ const Contact = () => {
 
         <a className="mt-8" href="mailto:arogundadeoluwatomilola@gmail.com">
           <Button
-            title="Let's connect (+234 901 733 4537)"
+            title="Let's connect"
             icon={<img src="assets/send.svg" />}
             position="right"
           />

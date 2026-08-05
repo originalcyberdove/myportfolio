@@ -23,7 +23,7 @@ const About = () => (
           Hello! I&apos;m <strong>Oluwatomilola Arogundade</strong>, a dedicated cybersecurity professional with hands-on experience across offensive security, SOC operations, and security education.
         </p>
         <p>
-          Currently pursuing my B.Sc. in Computer Science at Babcock University (4.61/5.00 GPA, 2022–2026), I have trained over 40+ students in cybersecurity, contributed to real-world threat detection, and actively lead technical communities as Infrastructure &amp; Security Track Lead at Google Developer Group (GDG) Babcock University and Remote Ambassador for Google Women Techmakers.
+          A First Class Computer Science graduate from Babcock University (B.Sc., 2022–2026), I have trained over 40+ students in cybersecurity, contributed to real-world threat detection, and actively lead technical communities as Infrastructure &amp; Security Track Lead at Google Developer Group (GDG) Babcock University and Remote Ambassador for Google Women Techmakers.
         </p>
         <p>
           My technical focus spans web application vulnerability assessments (SSRF, IDOR, SQLi, XSS), threat analysis with SIEM and SOC tools (Wazuh, Graylog, Sophos Firewall), and machine learning applications in security.
