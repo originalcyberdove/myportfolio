@@ -24,22 +24,50 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: [
+          "'Plus Jakarta Sans'",
+          "Inter",
+          "system-ui",
+          "-apple-system",
+          "sans-serif",
+        ],
+        mono: [
+          "'JetBrains Mono'",
+          "ui-monospace",
+          "SFMono-Regular",
+          "Menlo",
+          "Monaco",
+          "Consolas",
+          "monospace",
+        ],
+      },
       colors: {
+        cyber: {
+          darkest: "#0b0d11",
+          dark: "#11151b",
+          navy: "#171d26",
+          surface: "#202833",
+          card: "rgba(25, 31, 40, 0.92)",
+          border: "rgba(148, 163, 184, 0.18)",
+          cyan: "#7daeff",
+          blue: "#5b91f5",
+          electric: "#3d78e8",
+          emerald: "#71a6ff",
+          amber: "#fbbf24",
+          crimson: "#f87171",
+        },
         black: {
           DEFAULT: "#000",
-          100: "#000319",
-          200: "rgba(17, 25, 40, 0.75)",
-          300: "rgba(255, 255, 255, 0.125)",
+          100: "#040711",
+          200: "rgba(10, 17, 36, 0.75)",
+          300: "rgba(255, 255, 255, 0.08)",
         },
         white: {
           DEFAULT: "#FFF",
-          100: "#BEC1DD",
-          200: "#C1C2D3",
+          100: "#E2E8F0",
+          200: "#94A3B8",
         },
-        blue: {
-          "100": "#E4ECFF",
-        },
-        purple: "#9B4D96",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
@@ -52,6 +80,13 @@ const config = {
           foreground: "hsl(var(--secondary-foreground))",
         },
       },
+      boxShadow: {
+        "cyan-glow": "0 8px 24px -12px rgba(61, 120, 232, 0.45)",
+        "blue-glow": "0 8px 24px -12px rgba(61, 120, 232, 0.35)",
+        "emerald-glow": "0 8px 24px -12px rgba(61, 120, 232, 0.3)",
+        "card-hover":
+          "0 18px 34px -22px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(125, 174, 255, 0.12)",
+      },
       keyframes: {
         spotlight: {
           "0%": {
@@ -63,18 +98,39 @@ const config = {
             transform: "translate(-50%,-40%) scale(1)",
           },
         },
-        scroll: {
-          to: {
-            transform: "translate(calc(-50% - 0.5rem))",
-          },
+        pulseGlow: {
+          "0%, 100%": { opacity: "0.4" },
+          "50%": { opacity: "0.9" },
+        },
+        scanline: {
+          "0%": { transform: "translateY(-100%)" },
+          "100%": { transform: "translateY(1000%)" },
+        },
+        blink: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0" },
+        },
+        slideUp: {
+          "0%": { opacity: "0", transform: "translateY(10px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        progressFill: {
+          "0%": { width: "0%" },
+          "100%": { width: "100%" },
         },
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
         spotlight: "spotlight 2s ease .75s 1 forwards",
-        scroll:
-          "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
+        "pulse-glow": "pulseGlow 3s ease-in-out infinite",
+        scanline: "scanline 8s linear infinite",
+        blink: "blink 1s step-end infinite",
+        "slide-up": "slideUp 0.5s ease forwards",
+        "fade-in": "fadeIn 0.6s ease forwards",
+        "progress-fill": "progressFill 3s ease-in-out forwards",
       },
     },
   },
@@ -100,7 +156,10 @@ const config = {
             )}")`,
           }),
         },
-        { values: flattenColorPalette(theme("backgroundColor")), type: "color" }
+        {
+          values: flattenColorPalette(theme("backgroundColor")),
+          type: "color",
+        }
       );
     },
   ],

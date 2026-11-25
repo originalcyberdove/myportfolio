@@ -56,3 +56,35 @@ npm run dev
 ```
 
 Visit `http://localhost:3000` (or `http://localhost:3001`) in your browser to view the live site.
+
+## Proof of Work media
+
+Add personal media under `public/media/`, then update the matching entry in
+[`data/index.ts`](./data/index.ts). The gallery uses neutral UI placeholders until
+an image or video is available; it does not generate evidence.
+
+```text
+public/media/
+  teaching/
+  certificates/
+  projects/
+    fraudlock/
+    wazuh/
+    safeline/
+    application-security/
+  research/
+  community/
+  profile/
+```
+
+- Store certificate images at the paths configured in `certifications` and keep
+  their original aspect ratio; certificate previews use `object-fit: contain`.
+- Add project screenshots at the paths in each project's `screenshots` list.
+  Their captions are configured alongside those paths.
+- For a teaching video, add an MP4 and set the media item's `src` and optional
+  `thumbnail`. For an embedded video, set `embedUrl` instead. Video files load
+  only when a visitor opens the player.
+- Add research and community media as `MediaItem` entries with the matching
+  category. Images are lazy-loaded in the gallery and expanded in the viewer.
+- Before publishing, remove sensitive data, personal identifiers, or information
+  that is not safe to disclose from screenshots.

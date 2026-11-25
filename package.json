@@ -10,8 +10,11 @@
     "deploy": "vercel --prod"
   },
   "dependencies": {
+    "baseline-browser-mapping": "^2.11.34",
+    "caniuse-lite": "^1.0.30001820",
     "clsx": "^2.1.0",
     "framer-motion": "^11.0.25",
+    "lucide-react": "^1.65.0",
     "mini-svg-data-uri": "^1.4.4",
     "next": "14.1.4",
     "react": "^18",

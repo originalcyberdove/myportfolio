@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a1124" />
+      <stop offset="100%" stop-color="#040711" />
+    </linearGradient>
+    <linearGradient id="cyanBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00e5ff" />
+      <stop offset="50%" stop-color="#0070f3" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00e5ff" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#0070f3" stop-opacity="0.05" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="400" rx="32" fill="url(#bgGrad)" stroke="#1e293b" stroke-width="2"/>
+  
+  <!-- Circuit Grid Lines -->
+  <g stroke="#38bdf8" stroke-opacity="0.12" stroke-width="1.5">
+    <path d="M 50 100 L 350 100 M 50 200 L 350 200 M 50 300 L 350 300" />
+    <path d="M 100 50 L 100 350 M 200 50 L 200 350 M 300 50 L 300 350" />
+    <circle cx="100" cy="100" r="3" fill="#00e5ff" fill-opacity="0.5"/>
+    <circle cx="300" cy="100" r="3" fill="#00e5ff" fill-opacity="0.5"/>
+    <circle cx="100" cy="300" r="3" fill="#00e5ff" fill-opacity="0.5"/>
+    <circle cx="300" cy="300" r="3" fill="#00e5ff" fill-opacity="0.5"/>
+  </g>
+
+  <!-- Outer Radar Circle -->
+  <circle cx="200" cy="200" r="140" fill="none" stroke="#00e5ff" stroke-opacity="0.2" stroke-width="1.5" stroke-dasharray="6 6"/>
+  <circle cx="200" cy="200" r="110" fill="none" stroke="#38bdf8" stroke-opacity="0.3" stroke-width="1"/>
+
+  <!-- Security Shield Container -->
+  <path d="M 200 80 Q 280 90 290 170 C 290 250 200 310 200 310 C 200 310 110 250 110 170 Q 120 90 200 80 Z" 
+        fill="url(#shieldGrad)" stroke="#00e5ff" stroke-width="2.5" filter="url(#glow)"/>
+
+  <!-- Cyberdove Emblem: Stylized Wings and Dove Silhouette -->
+  <!-- Left Wing -->
+  <path d="M 195 190 C 170 145 130 140 125 155 C 145 175 165 195 185 205 C 150 200 135 215 145 225 C 165 230 180 225 195 218 Z" 
+        fill="url(#cyanBlue)" />
+  <!-- Right Wing -->
+  <path d="M 205 190 C 230 145 270 140 275 155 C 255 175 235 195 215 205 C 250 200 265 215 255 225 C 235 230 220 225 205 218 Z" 
+        fill="url(#cyanBlue)" />
+  <!-- Dove Body and Head -->
+  <path d="M 200 135 C 193 135 188 142 192 150 L 195 180 C 197 195 203 195 205 180 L 208 150 C 212 142 207 135 200 135 Z" 
+        fill="#ffffff" />
+  <!-- Dove Eye -->
+  <circle cx="198" cy="142" r="2" fill="#00e5ff"/>
+  <circle cx="202" cy="142" r="2" fill="#00e5ff"/>
+
+  <!-- Digital Lock Core -->
+  <circle cx="200" cy="245" r="14" fill="#0a1124" stroke="#00e5ff" stroke-width="2"/>
+  <path d="M 195 242 H 205 V 252 H 195 Z" fill="#00e5ff"/>
+  <path d="M 197 242 V 238 C 197 236 203 236 203 238 V 242" fill="none" stroke="#00e5ff" stroke-width="1.5"/>
+
+  <!-- Status indicators -->
+  <rect x="130" y="335" width="140" height="26" rx="13" fill="#050811" stroke="#10b981" stroke-width="1.5"/>
+  <circle cx="145" cy="348" r="4" fill="#10b981"/>
+  <text x="156" y="352" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#10b981" letter-spacing="1">CYBERDOVE // SEC</text>
+</svg>

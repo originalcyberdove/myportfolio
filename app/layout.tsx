@@ -1,11 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Poppins } from "next/font/google";
 import "./globals.css";
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["100", "200", "400", "700", "900"],
-});
 
 export default function RootLayout({
   children,
@@ -14,8 +8,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head />
-      <body className={`${poppins.className}`}>{children}</body>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var theme=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";try{var saved=window.localStorage.getItem("portfolio-theme");if(saved==="light"||saved==="dark")theme=saved;}catch(error){console.warn("Unable to read the saved theme preference.",error);}document.documentElement.dataset.theme=theme;})();`,
+          }}
+        />
+      </head>
+      <body>{children}</body>
     </html>
   );
 }
@@ -23,71 +23,47 @@ export default function RootLayout({
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#0f172a",
-  colorScheme: "dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f7f6f2" },
+    { media: "(prefers-color-scheme: dark)", color: "#111210" },
+  ],
+  colorScheme: "light dark",
 };
 
 export const metadata: Metadata = {
-  title: {
-    default: "Oluwatomilola Arogundade ✷ Cybersecurity Portfolio",
-    template: "%s - Oluwatomilola Arogundade",
-  },
+  title: "Oluwatomilola Arogundade | Cyberdove — Cybersecurity Professional",
   description:
-    "Cybersecurity professional with hands-on experience across offensive security, SOC operations, vulnerability assessment, and security education.",
+    "Portfolio of Oluwatomilola Arogundade (Cyberdove), a cybersecurity professional working across security operations, application security, research, and security education.",
   keywords: [
     "Oluwatomilola Arogundade",
-    "Cybersecurity Specialist",
-    "SOC Operations",
+    "Cyberdove",
+    "Cybersecurity Professional",
+    "Security Operations",
+    "SOC Specialist",
     "Vulnerability Assessment",
-    "Web Application Security",
-    "Incident Response",
-    "Threat Detection",
+    "Application Security",
     "Penetration Testing",
-    "Red Team",
+    "Wazuh",
+    "Burp Suite",
+    "Threat Detection",
+    "FraudLock NG",
+    "LLM Security",
   ],
-  icons: {
-    icon: "./favicon.ico",
-    apple: "./apple-touch-icon.png",
-  },
-  applicationName: "Oluwatomilola Arogundade Portfolio",
-  authors: [
-    {
-      name: "Oluwatomilola Arogundade",
-    },
-  ],
-  generator: "Next.js",
-  referrer: "origin",
+  authors: [{ name: "Oluwatomilola Arogundade (Cyberdove)" }],
   creator: "Oluwatomilola Arogundade",
-  publisher: "Oluwatomilola Arogundade",
-  category: "technology",
-
+  publisher: "Cyberdove",
   openGraph: {
     type: "website",
     locale: "en_US",
-    title: "Oluwatomilola Arogundade - Cybersecurity Professional",
+    title: "Oluwatomilola Arogundade | Cyberdove — Cybersecurity Professional",
     description:
-      "Cybersecurity professional with hands-on experience across offensive security, SOC operations, vulnerability assessment, and security education.",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Oluwatomilola Arogundade Portfolio",
-      },
-    ],
+      "Security operations, application security, research, and security education.",
+    siteName: "Cyberdove Portfolio",
   },
-
   twitter: {
     card: "summary_large_image",
-    title: "Oluwatomilola Arogundade - Cybersecurity Portfolio",
+    title: "Oluwatomilola Arogundade | Cyberdove — Cybersecurity Professional",
     description:
-      "Cybersecurity professional specializing in SOC operations, vulnerability assessment, and web app security.",
-    images: ["/twitter-image.png"],
-  },
-
-  robots: {
-    index: true,
-    follow: true,
+      "Cybersecurity professional specializing in SOC operations, application security, threat detection, and AI security.",
   },
 };
-

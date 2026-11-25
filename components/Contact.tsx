@@ -18,7 +18,7 @@ const Contact = () => {
         </Reveal>
 
         <p className="mt-4 text-sm md:text-base opacity-70 max-w-[500px]">
-          Based in Ibadan, Oyo State, Nigeria. Open for cybersecurity roles, SOC monitoring, penetration testing, and security consulting worldwide.
+          Based in Nigeria. Open for cybersecurity roles, SOC monitoring, penetration testing, and security consulting worldwide.
         </p>
 
         <a className="mt-8" href="mailto:oluwatomilolaarogundade@gmail.com">

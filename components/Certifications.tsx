@@ -1,117 +1,119 @@
-import React from "react";
-import { certifications, leadership, publications } from "@/data";
-import { Sparkle } from "./ui/Sparkle";
-import Reveal from "./ui/Reveal";
+"use client";
 
-const Certifications = (): JSX.Element => (
-  <section id="certifications" className="py-20 w-full space-y-16">
-    {/* Certifications Section */}
-    <div>
-      <Reveal>
-        <h3 className="title mb-10">
-          Certifications &amp;{" "}
-          <span className="bg-gradient-to-r from-purple to-red-700 bg-clip-text text-transparent">
-            Credentials.
-          </span>
-        </h3>
-      </Reveal>
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { certifications, type Certification } from "@/data";
+import EvidenceImage from "./ui/EvidenceImage";
+import SectionHeading from "./ui/SectionHeading";
+import SectionReveal from "./ui/SectionReveal";
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {certifications.map((cert, index) => (
-          <Sparkle key={`cert-${index}`} duration={12000}>
-            <div className="p-6 text-start flex flex-col justify-between h-full space-y-4">
-              <div>
-                <div className="flex justify-between items-start">
-                  <h4 className="text-xl font-bold">{cert.title}</h4>
-                  <span className="text-xs bg-purple/20 text-purple-300 border border-purple/30 px-3 py-1 rounded-full font-mono">
-                    {cert.date}
+export default function Certifications() {
+  const [selectedCertificate, setSelectedCertificate] =
+    useState<Certification | null>(null);
+
+  return (
+    <section id="certifications" className="section-padding relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyber-navy/15 to-transparent pointer-events-none" />
+
+      <div className="relative max-w-7xl mx-auto px-4 md:px-8">
+        <SectionReveal>
+          <SectionHeading
+            label="Certifications"
+            title="Professional Credentials"
+            description="Validated knowledge across cybersecurity education, LLM security, and industry standards."
+          />
+        </SectionReveal>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {certifications.map((cert, i) => (
+            <SectionReveal key={cert.title} delay={0.1 * (i + 1)}>
+              <article className="glass-panel rounded-2xl p-5 h-full flex flex-col group hover:shadow-card-hover transition-all duration-300">
+                <button
+                  type="button"
+                  className="relative h-36 w-full rounded-xl mb-4 overflow-hidden text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyber-cyan"
+                  onClick={() => setSelectedCertificate(cert)}
+                  aria-label={`View ${cert.title} certificate`}
+                >
+                  <EvidenceImage
+                    src={cert.image}
+                    alt={`${cert.title} certificate`}
+                    fit="contain"
+                    placeholderLabel="Certificate image placeholder"
+                    className="h-full w-full rounded-xl p-2"
+                  />
+                  <span className="absolute inset-0 flex items-center justify-center bg-cyber-cyan/5 opacity-0 transition-opacity group-hover:opacity-100">
+                    <span className="text-xs font-mono text-cyber-cyan">
+                      View certificate
+                    </span>
                   </span>
-                </div>
-                <p className="text-sm text-purple-400 font-semibold mt-1">{cert.issuer}</p>
-                <p className="text-sm opacity-80 mt-3 leading-relaxed">{cert.desc}</p>
-              </div>
-            </div>
-          </Sparkle>
-        ))}
-      </div>
-    </div>
+                </button>
 
-    {/* Leadership Section */}
-    <div>
-      <Reveal>
-        <h3 className="title mb-10">
-          Leadership &amp;{" "}
-          <span className="bg-gradient-to-r from-purple to-red-700 bg-clip-text text-transparent">
-            Community.
-          </span>
-        </h3>
-      </Reveal>
-
-      <div className="space-y-6">
-        {leadership.map((item) => (
-          <Sparkle key={`lead-${item.id}`} duration={15000}>
-            <div className="p-6 md:p-8 text-start space-y-4">
-              <div className="flex flex-col md:flex-row justify-between md:items-center border-b border-white/10 pb-4">
-                <div>
-                  <h4 className="text-2xl font-extrabold">{item.role}</h4>
-                  <p className="text-lg font-semibold bg-gradient-to-r from-purple to-red-700 bg-clip-text text-transparent mt-1">
-                    {item.organization}
+                <h3 className="text-sm font-bold text-white mb-1.5 leading-snug">
+                  {cert.title}
+                </h3>
+                <p className="text-xs text-slate-500 font-mono">{cert.issuer}</p>
+                {cert.issueDate && (
+                  <p className="text-xs text-slate-600 mt-2">
+                    Issued {cert.issueDate}
                   </p>
-                </div>
-                <div className="text-left md:text-right opacity-80 mt-2 md:mt-0 text-sm">
-                  <p>{item.period}</p>
-                  <p>{item.location}</p>
-                </div>
-              </div>
-              <ul className="list-disc list-inside space-y-2 opacity-90 text-sm md:text-base">
-                {item.bullets.map((bullet, idx) => (
-                  <li key={idx}>{bullet}</li>
-                ))}
-              </ul>
-            </div>
-          </Sparkle>
-        ))}
+                )}
+              </article>
+            </SectionReveal>
+          ))}
+        </div>
       </div>
-    </div>
 
-    {/* Publication Section */}
-    <div>
-      <Reveal>
-        <h3 className="title mb-10">
-          Research &amp;{" "}
-          <span className="bg-gradient-to-r from-purple to-red-700 bg-clip-text text-transparent">
-            Publications.
-          </span>
-        </h3>
-      </Reveal>
-
-      {publications.map((pub, idx) => (
-        <Sparkle key={`pub-${idx}`} duration={18000}>
-          <a
-            href={(pub as any).link || (pub.doi ? `https://doi.org/${pub.doi}` : "#")}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block p-6 md:p-8 text-start space-y-4 border border-purple/20 rounded-3xl hover:border-purple/50 transition-colors group cursor-pointer"
+      <AnimatePresence>
+        {selectedCertificate && (
+          <motion.div
+            className="lightbox-overlay cursor-pointer"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedCertificate(null)}
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${selectedCertificate.title} certificate viewer`}
           >
-            <div className="flex items-center justify-between">
-              <span className="text-xs bg-red-700/30 text-red-300 border border-red-500/30 px-3 py-1 rounded-full font-mono inline-block">
-                {pub.role}
-              </span>
-              <span className="text-xs text-purple-300 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                View Publication &rarr;
-              </span>
-            </div>
-            <h4 className="text-xl md:text-2xl font-bold leading-snug group-hover:text-purple transition-colors">
-              {pub.title}
-            </h4>
-            <p className="text-sm opacity-80 font-medium">{pub.authors}</p>
-            <p className="text-sm text-purple-300 italic">{pub.journal}</p>
-            <p className="text-xs opacity-60 font-mono">DOI: {pub.doi}</p>
-          </a>
-        </Sparkle>
-      ))}
-    </div>
-  </section>
-);
-
-export default Certifications;
+            <motion.div
+              className="relative w-full max-w-5xl mx-4"
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.9 }}
+              onClick={(event) => event.stopPropagation()}
+            >
+              <button
+                type="button"
+                onClick={() => setSelectedCertificate(null)}
+                className="absolute -top-10 right-0 z-10 w-8 h-8 rounded-full bg-white/10 backdrop-blur flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+                aria-label="Close certificate viewer"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+              <div className="relative h-[70vh] max-h-[760px] w-full overflow-hidden rounded-2xl border border-cyber-border bg-cyber-navy">
+                <EvidenceImage
+                  src={selectedCertificate.image}
+                  alt={`${selectedCertificate.title} certificate`}
+                  fit="contain"
+                  placeholderLabel="Upload the original certificate image to view it here"
+                  sizes="100vw"
+                  className="h-full w-full p-4"
+                />
+              </div>
+              <div className="mt-4 text-center">
+                <h3 className="text-sm font-bold text-white">
+                  {selectedCertificate.title}
+                </h3>
+                <p className="mt-1 text-xs text-slate-400">
+                  {selectedCertificate.issuer}
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
+  );
+}
